@@ -8,6 +8,8 @@ import java.util.List;
 //
 //        Diameter: design a linear-time algorithm to find the longest simple path in the graph.
 //        Center: design a linear-time algorithm to find a vertex such that its maximum distance from any other vertex is minimized.
+
+//TODO： The hint says we can find the center in the longest simple path. It seems reasonable but I suppose it need proof.
 public class DiameterAndCenter {
     // Used to track farthest node.
     static int x;
