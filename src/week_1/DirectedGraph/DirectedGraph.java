@@ -24,4 +24,8 @@ public class DirectedGraph {
     public Iterable<Integer> adj(int v){
         return adj[v];
     }
+
+    public int V(){
+        return V;
+    }
 }
