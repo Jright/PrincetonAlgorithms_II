@@ -18,6 +18,7 @@ public class TopologicalSort {
         for (int adj : dg.adj(v)) {
             if (!marked[adj]) {
                 marked[adj] = true;
+                DFS(dg, v);
             }
         }
         reversePost.push(v);
