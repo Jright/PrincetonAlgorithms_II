@@ -53,7 +53,7 @@ public class EulerCycleGraph {
         }
 
         if(i == V){
-            return true;
+            return false;
         }
 
         DFSUtil(i, visited);
