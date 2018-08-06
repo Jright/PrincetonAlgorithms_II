@@ -1,6 +1,6 @@
 package week_1.DirectedGraph;
 
-import edu.princeton.cs.algs4.Stack;
+import edu.princeton.cs.algs4.LinkedQueue;
 
 public class BFSofDirectedGraph {
 
@@ -12,16 +12,16 @@ public class BFSofDirectedGraph {
     }
 
     public void BFS(DirectedGraph dg, int v){
-        Stack<Integer> stack = new Stack<>();
-        stack.push(v);
+        LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
+        linkedQueue.enqueue(v);
         marked[v] = true;
 
-        while(!stack.isEmpty()){
-            Integer pop = stack.pop();
+        while(!linkedQueue.isEmpty()){
+            Integer pop = linkedQueue.dequeue();
             for(int adj : dg.adj(pop)){
                 if(!marked[adj]){
                     marked[adj] = true;
-                    stack.push(adj);
+                    linkedQueue.enqueue(adj);
                 }
             }
         }
