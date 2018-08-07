@@ -4,6 +4,8 @@ import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.LinkedQueue;
 import edu.princeton.cs.algs4.Stack;
 
+import java.util.Arrays;
+
 public class RecordedBFS {
     private static final int INFINITY = Integer.MAX_VALUE;
 
@@ -74,7 +76,8 @@ public class RecordedBFS {
     }
 
     public boolean[] getMarked(){
-        return marked;
+        boolean[] returnMarked = Arrays.copyOf(marked, marked.length);
+        return returnMarked;
     }
 
     public int distTo(int v){

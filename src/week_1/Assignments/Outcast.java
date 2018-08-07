@@ -2,7 +2,7 @@ package week_1.Assignments;
 
 public class Outcast {
 
-    WordNet wordNet;
+    private final WordNet wordNet;
     // constructor takes a WordNet object
     public Outcast(WordNet wordnet) {
         this.wordNet = wordnet;
@@ -34,7 +34,9 @@ public class Outcast {
         return nouns[maxIndex];
     }
 
-    // see test client below
+    /**
+     *  see test client below
+      */
     public static void main(String[] args) {
 
     }

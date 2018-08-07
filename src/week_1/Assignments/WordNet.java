@@ -1,19 +1,26 @@
 package week_1.Assignments;
 
 
-import edu.princeton.cs.algs4.*;
+import edu.princeton.cs.algs4.Digraph;
+import edu.princeton.cs.algs4.SET;
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.DirectedCycle;
+import edu.princeton.cs.algs4.LinkedQueue;
+
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WordNet {
 
     private class Noun implements Comparable<Noun> {
         private String noun;
 
-        private LinkedQueue<Integer> ids;
+        private ArrayList<Integer> ids ;
 
         public Noun(String noun) {
             this.noun = noun;
+            ids = new ArrayList<>();
         }
 
         @Override
@@ -21,12 +28,12 @@ public class WordNet {
             return this.noun.compareTo(that.noun);
         }
 
-        public LinkedQueue<Integer> getIds() {
+        public List<Integer> getIds() {
             return this.ids;
         }
 
         public void addId(Integer x) {
-            this.ids.enqueue(x);
+            this.ids.add(x);
         }
     }
 
@@ -49,7 +56,7 @@ public class WordNet {
         while(line != null){
             maxVertex++;
             String[] synsetLine = line.split(",");
-            Integer id = Integer.parseInt(synsetLine[0]);
+            int id = Integer.parseInt(synsetLine[0]);
             String[] nounSet = synsetLine[1].split(" ");
             for(String nounName : nounSet){
                 Noun noun = new Noun(nounName);
@@ -100,7 +107,7 @@ public class WordNet {
 
     // returns all WordNet nouns
         public Iterable<String> nouns(){
-            Queue<String> nouns = new Queue<String>();
+            LinkedQueue<String> nouns = new LinkedQueue<>();
             for(Noun noun : nounSET){
                 nouns.enqueue(noun.noun);
             }
