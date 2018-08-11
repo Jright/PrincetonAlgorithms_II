@@ -13,35 +13,35 @@ public class RecordedBFS {
     private int[] edgeTo;//edgeTo[v] = last edge on shortest s -> v path
     private int[] distTo;//distTo[v] = shortest length of s -> v path
 
-    public RecordedBFS(Digraph G, int s){
+    public RecordedBFS(Digraph G, int s) {
         marked = new boolean[G.V()];
         distTo = new int[G.V()];
         edgeTo = new int[G.V()];
-        for(int v = 0; v < G.V(); v++){
+        for (int v = 0; v < G.V(); v++) {
             distTo[v] = INFINITY;
         }
         bfs(G, s);
     }
 
-    public RecordedBFS(Digraph G, Iterable<Integer> sources){
+    public RecordedBFS(Digraph G, Iterable<Integer> sources) {
         marked = new boolean[G.V()];
         distTo = new int[G.V()];
         edgeTo = new int[G.V()];
-        for(int v = 0; v < G.V(); v++){
+        for (int v = 0; v < G.V(); v++) {
             distTo[v] = INFINITY;
         }
         bfs(G, sources);
     }
 
-    private void bfs(Digraph G, int v){
+    private void bfs(Digraph G, int v) {
         LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
         linkedQueue.enqueue(v);
         marked[v] = true;
         distTo[v] = 0;
-        while(!linkedQueue.isEmpty()){
+        while (!linkedQueue.isEmpty()) {
             Integer dequeue = linkedQueue.dequeue();
-            for(int w : G.adj(dequeue)){
-                if(!marked[w]){
+            for (int w : G.adj(dequeue)) {
+                if (!marked[w]) {
                     marked[dequeue] = true;
                     edgeTo[w] = dequeue;
                     distTo[w] = distTo[dequeue] + 1;
@@ -51,17 +51,17 @@ public class RecordedBFS {
         }
     }
 
-    private void bfs(Digraph G, Iterable<Integer> sources){
+    private void bfs(Digraph G, Iterable<Integer> sources) {
         LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
-        for(int s : sources){
+        for (int s : sources) {
             marked[s] = true;
             distTo[s] = 0;
             linkedQueue.enqueue(s);
         }
-        while(!linkedQueue.isEmpty()){
+        while (!linkedQueue.isEmpty()) {
             Integer dequeue = linkedQueue.dequeue();
-            for(int w : G.adj(dequeue)){
-                if(!marked[w]){
+            for (int w : G.adj(dequeue)) {
+                if (!marked[w]) {
                     marked[dequeue] = true;
                     edgeTo[w] = dequeue;
                     distTo[w] = distTo[dequeue] + 1;
@@ -71,27 +71,27 @@ public class RecordedBFS {
         }
     }
 
-    public boolean hasPathTo(int v){
+    public boolean hasPathTo(int v) {
         return marked[v];
     }
 
-    public boolean[] getMarked(){
+    public boolean[] getMarked() {
         boolean[] returnMarked = Arrays.copyOf(marked, marked.length);
         return returnMarked;
     }
 
-    public int distTo(int v){
+    public int distTo(int v) {
         return distTo[v];
     }
 
-    public Iterable<Integer> shortestPathTo(int v){
-        if(!hasPathTo(v)){
+    public Iterable<Integer> shortestPathTo(int v) {
+        if (!hasPathTo(v)) {
             return null;
         }
 
         int x;
         Stack<Integer> pathStack = new Stack<>();
-        for(x = v; distTo[x] != 0; x = edgeTo[x]){
+        for (x = v; distTo[x] != 0; x = edgeTo[x]) {
             pathStack.push(x);
         }
         pathStack.push(x);

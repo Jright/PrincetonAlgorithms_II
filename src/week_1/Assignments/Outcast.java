@@ -3,6 +3,7 @@ package week_1.Assignments;
 public class Outcast {
 
     private final WordNet wordNet;
+
     // constructor takes a WordNet object
     public Outcast(WordNet wordnet) {
         this.wordNet = wordnet;
@@ -12,11 +13,11 @@ public class Outcast {
     public String outcast(String[] nouns) {
         int[] distances = new int[nouns.length];
 
-        for(int i = 0; i < nouns.length; i++){
-            for(int j = i; j < nouns.length; j++){
+        for (int i = 0; i < nouns.length; i++) {
+            for (int j = i; j < nouns.length; j++) {
                 int dist = wordNet.distance(nouns[i], nouns[j]);
                 distances[i] += dist;
-                if(i != j){
+                if (i != j) {
                     distances[j] += dist;
                 }
             }
@@ -24,8 +25,8 @@ public class Outcast {
 
         int maxDistance = 0;
         int maxIndex = 0;
-        for(int i = 0; i < distances.length; i++){
-            if(distances[i] > maxDistance){
+        for (int i = 0; i < distances.length; i++) {
+            if (distances[i] > maxDistance) {
                 maxDistance = distances[i];
                 maxIndex = i;
             }
@@ -35,9 +36,9 @@ public class Outcast {
     }
 
     /**
-     *  see test client below
-      */
+     * see test client below
+     */
     public static void main(String[] args) {
-
+        System.out.print(" ");
     }
 }
