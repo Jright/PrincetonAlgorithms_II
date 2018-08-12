@@ -41,24 +41,24 @@ public class SAP {
     }
 
     private int[] shortestLengthAndAncestor(int v, int w) {
-        RecordedBFS vBfs = new RecordedBFS(G, v);
-        RecordedBFS wBfs = new RecordedBFS(G, w);
-
-        int shortestLength = Integer.MAX_VALUE;
-        int minAncestor = Integer.MAX_VALUE;
 
         int[] answer = new int[2];
-        answer[0] = shortestLength;
-        answer[1] = minAncestor;
+        RecordedBFS vBfs = new RecordedBFS(G, v);
+        RecordedBFS wBfs = new RecordedBFS(G, w);
 
         boolean[] vMarked = vBfs.getMarked();
         boolean[] wMarked = wBfs.getMarked();
 
+        int shortestLength = Integer.MAX_VALUE;
+        int tempLength = Integer.MAX_VALUE;
+        int minAncestor = Integer.MAX_VALUE;
+
+
         for (int i = 0; i < vMarked.length; i++) {
             if (vMarked[i] && wMarked[i]) {
-                int pathLength = vBfs.distTo(i) + wBfs.distTo(i);
-                if (pathLength < shortestLength) {
-                    shortestLength = pathLength;
+                tempLength = vBfs.distTo(i) + wBfs.distTo(i);
+                if (tempLength < shortestLength) {
+                    shortestLength = tempLength;
                     minAncestor = i;
                 }
             }
@@ -83,7 +83,7 @@ public class SAP {
         for (int v : vSources) {
             for (int w : wSources) {
                 int[] tempAnswer = shortestLengthAndAncestor(v, w);
-                if (tempAnswer[0] < shortestLength) {
+                if (tempAnswer[0] != -1 && tempAnswer[0] < shortestLength) {
                     shortestLength = tempAnswer[0];
                     shortestAncestor = tempAnswer[1];
                 }
