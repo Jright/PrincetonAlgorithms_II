@@ -2,6 +2,7 @@ package week_1.Assignments;
 
 import edu.princeton.cs.algs4.Digraph;
 import edu.princeton.cs.algs4.LinkedQueue;
+import edu.princeton.cs.algs4.Queue;
 import edu.princeton.cs.algs4.Stack;
 
 import java.util.Arrays;
@@ -34,38 +35,38 @@ public class RecordedBFS {
     }
 
     private void bfs(Digraph G, int v) {
-        LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
-        linkedQueue.enqueue(v);
+        Queue<Integer> queue = new Queue<>();
+        queue.enqueue(v);
         marked[v] = true;
         distTo[v] = 0;
-        while (!linkedQueue.isEmpty()) {
-            Integer dequeue = linkedQueue.dequeue();
+        while (!queue.isEmpty()) {
+            Integer dequeue = queue.dequeue();
             for (int w : G.adj(dequeue)) {
                 if (!marked[w]) {
                     marked[dequeue] = true;
                     edgeTo[w] = dequeue;
                     distTo[w] = distTo[dequeue] + 1;
-                    linkedQueue.enqueue(w);
+                    queue.enqueue(w);
                 }
             }
         }
     }
 
     private void bfs(Digraph G, Iterable<Integer> sources) {
-        LinkedQueue<Integer> linkedQueue = new LinkedQueue<>();
+        Queue<Integer> queue = new Queue<>();
         for (int s : sources) {
             marked[s] = true;
             distTo[s] = 0;
-            linkedQueue.enqueue(s);
+            queue.enqueue(s);
         }
-        while (!linkedQueue.isEmpty()) {
-            Integer dequeue = linkedQueue.dequeue();
+        while (!queue.isEmpty()) {
+            Integer dequeue = queue.dequeue();
             for (int w : G.adj(dequeue)) {
                 if (!marked[w]) {
                     marked[dequeue] = true;
                     edgeTo[w] = dequeue;
                     distTo[w] = distTo[dequeue] + 1;
-                    linkedQueue.enqueue(w);
+                    queue.enqueue(w);
                 }
             }
         }
